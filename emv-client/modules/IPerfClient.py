@@ -6,7 +6,7 @@ import re
 
 COMMAND="/usr/local/bin/iperf3 -c {0} -p {1} --timestamps -i 1 -t 0 --logfile {2} --bind {3} -b {4}"
 
-PATTERN = r".*sec\s+(\d+ (MBytes|KBytes|GBytes|Bytes)).*\/sec\s+(\d+)\s+.*"
+PATTERN = r".*sec\s+(\d+.?\d* (MBytes|KBytes|GBytes|Bytes)).*\/sec\s+(\d+)\s+.*"
 UNITS = {
     "Bytes": 1,
     "KBytes": 1000,
