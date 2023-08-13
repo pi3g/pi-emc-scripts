@@ -15,7 +15,7 @@ Also make sure that a logs folder exists as otherwise the script won't work
 ## Displays
 ### Dependencies
 ```
-sudo apt install mplayer mesa-utils
+sudo apt install mesa-utils
 ```
 ### TFT Display
 Follow instructions here: https://github.com/pi3g/tft-display-setup

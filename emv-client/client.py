@@ -1,6 +1,6 @@
 from modules.IPerfClient import IPerfClient
 from modules.GLXGears import GLXGears
-from modules.MPlayer import MPlayer
+from modules.VLC import VLC
 from modules.Audio import Audio
 from modules.SysbenchFileIO import SysbenchFileIO
 from modules.LogModule import log_warn, log_info, start_time
@@ -48,8 +48,8 @@ class Client:
             self.modules.append(self.iperf_wlan)
 
         if MODULE_HDMI_VIDEO:
-            self.mplayer = MPlayer("logs/mplayer.log")
-            self.modules.append(self.mplayer)
+            self.vlc = VLC("logs/vlc.log")
+            self.modules.append(self.vlc)
         
         if MODULE_TFT_ANIMATION:
             self.glxgears = GLXGears("logs/glxgears.log")

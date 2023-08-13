@@ -17,7 +17,7 @@ layout = [
             sg.Text("LAN: ", expand_x=True, font=["normal", 24], key="LAN")
         ],
         [
-            sg.Text("MPlayer: ", font=["normal", 24], expand_x=True, key="MPlayer"),
+            sg.Text("VLC: ", font=["normal", 24], expand_x=True, key="VLC"),
             sg.Text("GLXGears: ", expand_x=True, font=["normal", 24], key="GLXGears")
         ],
         [
