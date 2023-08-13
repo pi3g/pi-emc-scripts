@@ -47,6 +47,8 @@ class IPerfClient(ModuleBase):
             bytes_transferred = int(float(transfer[0]) * UNITS[transfer[1]])
             retries = int(match.group(3))
             packets_transferred = bytes_transferred // MTU
+            if packets_transferred == 0:
+                return ""
             loss_percent = retries / packets_transferred
 
             if loss_percent > 0.10:
