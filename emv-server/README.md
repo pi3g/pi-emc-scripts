@@ -36,6 +36,7 @@ tar -xf iperf-3.14.tar.gz
 rm iperf-3.14.tar.gz
 cd iperf-3.14
 ./configure; make; sudo make install
+sudo ldconfig /usr/local/lib
 ```
 ### WiFi Country
 ```

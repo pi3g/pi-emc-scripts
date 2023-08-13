@@ -116,7 +116,7 @@ class StatusServer():
             if values[event] in colors:
                 window[event].update("{0}: {1}".format(event, values[event]), colors[values[event]])
             else:
-                if int(values[event].replace("%", "")) >= 10:
+                if values[event] != "" and int(values[event].replace("%", "")) >= 10:
                     window[event].update("{0}: {1}".format(event, values[event]), colors["ERROR"])
                 else:
                     window[event].update("{0}: {1}".format(event, values[event]), colors["OK"])
