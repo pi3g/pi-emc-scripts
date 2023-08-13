@@ -12,19 +12,38 @@ colors = {
 }
 
 layout = [
-        [sg.Text("IPerfClient WLAN: ", font=["normal", 24], key="IPerfClient WLAN")],
-        [sg.Text("IPerfClient LAN: ", font=["normal", 24], key="IPerfClient LAN")],
-        [sg.Text("MPlayer: ", font=["normal", 24], key="MPlayer")],
-        [sg.Text("GLXGears: ", font=["normal", 24], key="GLXGears")],
-        [sg.Text("Headset Audio: ", font=["normal", 24], key="Headset Audio")],
-        [sg.Text("Bluetooth Audio: ", font=["normal", 24], key="Bluetooth Audio")],
-        [sg.Text("SysbenchFileIO: ", font=["normal", 24], key="SysbenchFileIO")],
-        [sg.Button("Exit", font=["normal", 20]), sg.Text("", font=["normal", 24], key="Time")],
+        [
+            sg.Text("WLAN: ", font=["normal", 24], expand_x=True, key="WLAN"), 
+            sg.Text("LAN: ", expand_x=True, font=["normal", 24], key="LAN")
+        ],
+        [
+            sg.Text("MPlayer: ", font=["normal", 24], expand_x=True, key="MPlayer"),
+            sg.Text("GLXGears: ", expand_x=True, font=["normal", 24], key="GLXGears")
+        ],
+        [
+            sg.Text("Headset: ", font=["normal", 24], expand_x=True, key="Headset"), 
+            sg.Text("Bluetooth: ", expand_x=True, font=["normal", 24], key="Bluetooth")
+        ],
+        [
+            sg.Text("SysbenchFileIO: ", font=["normal", 24], key="SysbenchFileIO")
+        ],
+        [
+            sg.Text("WIFI Loss: ", font=["normal", 24], expand_x=True, key="WIFI Loss"),
+            sg.Text("LAN Loss: ", expand_x=True, font=["normal", 24], key="LAN Loss")
+        ],
+        [
+            sg.Button("Exit", font=["normal", 20]), sg.Text("", font=["normal", 24], key="Time")
+        ],
     ]
 
-window = sg.Window(title="Status", layout=layout, 
-    finalize=True, auto_size_buttons=True, 
-    auto_size_text=True, size=[640, 445], no_titlebar=True,
+window = sg.Window(
+    title="Status", 
+    layout=layout, 
+    finalize=True, 
+    auto_size_buttons=True, 
+    auto_size_text=True, 
+    size=[640, 445], 
+    no_titlebar=True,
     location=[0,35]
 )
 
@@ -81,7 +100,9 @@ class StatusServer():
         global window
         global wants_to_exit
         global colors
+
         event, values = window.read(timeout=10)
+
         if event == sg.WIN_CLOSED or event == 'Exit':
             log_info("Exit Button Pressed")
             wants_to_exit = True
@@ -92,5 +113,11 @@ class StatusServer():
         elif event == "Time":
             window[event].update("Runtime " + values[event] + "s")
         else:
-            window[event].update("{0}: {1}".format(event, values[event]), colors[values[event]])
+            if values[event] in colors:
+                window[event].update("{0}: {1}".format(event, values[event]), colors[values[event]])
+            else:
+                if int(values[event].replace("%", "")) >= 10:
+                    window[event].update("{0}: {1}".format(event, values[event]), colors["ERROR"])
+                else:
+                    window[event].update("{0}: {1}".format(event, values[event]), colors["OK"])
             

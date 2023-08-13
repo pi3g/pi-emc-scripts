@@ -2,7 +2,7 @@ import subprocess
 from signal import SIGTERM
 import os
 
-COMMAND="/usr/local/bin/iperf3 -s -p {0} --rcv-timeout 5000 --timestamps -i 30 --logfile {1}"
+COMMAND="/usr/local/bin/iperf3 -s -p {0} --rcv-timeout 5000 --timestamps -i 1 --logfile {1}"
 
 class IPerfServer:
     def __init__(self, port: int, logfile: str):

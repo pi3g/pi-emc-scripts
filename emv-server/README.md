@@ -1,6 +1,3 @@
-# Todo
-- Hotspot disappears sometimes? may only be when no one is connected
-
 # Information
 To view the Client Pi's DHCP Leases use `cat /var/lib/misc/dnsmasq.leases` there should be two entries in the file.  
 After pressing exit on the Internal Display it may take up to 10 Seconds for everything to close.
@@ -26,7 +23,7 @@ Using `sudo raspi-config` navigate to Display and disable screen blanking
 ## Networking Setup
 Install hostapd and dnsmasq for hosting a WiFi access point, a DHCP and DNS server and iperf for bandwith testing.
 ```
-sudo apt install hostapd dnsmasq iperf3
+sudo apt install hostapd dnsmasq
 sudo service dnsmasq stop
 sudo service hostapd stop
 ```
@@ -81,8 +78,15 @@ sudo nano /etc/hostapd/hostapd.conf
 At the end instert the following
 ```
 interface=wlan0
+
+# 2.4GHz Mode
 hw_mode=g
 channel=7
+
+# 5GHz Mode
+# hw_mode=a
+# channel=40
+
 macaddr_acl=0
 auth_algs=1
 ignore_broadcast_ssid=0
