@@ -138,7 +138,7 @@ def loop():
     except:
         log_warn("Status Server unreachable")
     
-    sleep(0.9)
+    sleep(0.5)
     return 0
     
 if __name__ == "__main__":
