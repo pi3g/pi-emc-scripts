@@ -44,7 +44,7 @@ class IPerfClient(ModuleBase):
             
         if match := re.search(PATTERN, last_line):
             transfer = match.group(1).split()
-            bytes_transferred = int(transfer[0]) * UNITS[transfer[1]]
+            bytes_transferred = int(float(transfer[0]) * UNITS[transfer[1]])
             retries = int(match.group(3))
             packets_transferred = bytes_transferred // MTU
             loss_percent = retries / packets_transferred
